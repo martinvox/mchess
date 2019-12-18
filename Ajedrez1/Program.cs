@@ -1,8 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+
+/* Todolist: 
+    Piezas con sus propiedades (nombres y movimientos)
+    Distribución del tablero (blanco,negro)
+    Permitir el seguimiento del juego al errar movimiento
+*/
 
 namespace Ajedrez1
 {

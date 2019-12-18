@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ajedrez1
 {
@@ -19,42 +15,42 @@ namespace Ajedrez1
             puntoY = 0;
             destinoX = 0;
             destinoY = 0;
-            Exit = false;
+            Salir = false;
         }
 
-        public bool Exit { get; set; }
+        public bool Salir { get; set; }
 
         public void RealizarMovimiento()
         {
             EntradaDatos();
 
-            if (!Exit)
+            if (!Salir)
                 OrdenarPeones();
         }
 
         private void EntradaDatos()
         {
-            //get input and validate it
-            //the program runs until user enters invalid input.
+            //ingresar datos y validarlos
+            //el programa se ejecuta hasta ingresar datos invalidos
             Console.WriteLine("Ingrese coordenada X");
-            Exit = ValidarEntrada(int.TryParse(Console.ReadLine(), out puntoX));
+            Salir = ValidarEntrada(int.TryParse(Console.ReadLine(), out puntoX));
 
-            if (!Exit) //if we passed the previous validation, move to the next coordinates
+            if (!Salir) //al ser distinto de salir se pasa la validación previa para moverse al próximo punto hasta ingresar punto de partida y destino
             {
                 Console.WriteLine("Ingrese coordenada Y");
-                Exit = ValidarEntrada(int.TryParse(Console.ReadLine(), out puntoY));
+                Salir = ValidarEntrada(int.TryParse(Console.ReadLine(), out puntoY));
             }
 
-            if (!Exit) //if we passed the previous validation, move to the next coordinates
+            if (!Salir)
             {
                 Console.WriteLine("Ingrese coordenada X");
-                Exit = ValidarEntrada(int.TryParse(Console.ReadLine(), out destinoX));
+                Salir = ValidarEntrada(int.TryParse(Console.ReadLine(), out destinoX));
             }
 
-            if (!Exit) //if we passed the previous validation, move to the next coordinates
+            if (!Salir)
             {
                 Console.WriteLine("Ingrese coordenada Y");
-                Exit = ValidarEntrada(int.TryParse(Console.ReadLine(), out destinoY));
+                Salir = ValidarEntrada(int.TryParse(Console.ReadLine(), out destinoY));
             }
         }
 
@@ -66,8 +62,8 @@ namespace Ajedrez1
                 error = true;
             else if (puntoX < 0 || puntoY < 0 || destinoX < 0 || destinoY < 0)
                 error = true;
-            else if (puntoX > Tablero.DIMENSION - 1 || puntoY> Tablero.DIMENSION - 1 ||
-                      destinoX > Tablero.DIMENSION - 1 || destinoY > Tablero.DIMENSION - 1)
+            else if (puntoX > Tablero.tamano - 1 || puntoY> Tablero.tamano - 1 ||
+                      destinoX > Tablero.tamano - 1 || destinoY > Tablero.tamano - 1)
                 error = true;
 
             if (error)
@@ -78,8 +74,8 @@ namespace Ajedrez1
 
         private void OrdenarPeones()
         {
-            peones[destinoX, destinoY] = peones[puntoX, puntoY]; //place the symbol of the target into destination coordinates
-            peones[puntoX, puntoY] = Espacio; //set the target symbol to space
+            peones[destinoX, destinoY] = peones[puntoX, puntoY]; //mover/copiar ficha
+            peones[puntoX, puntoY] = Espacio; //ingresar un espacio en el lugar original
         }
     }
 }

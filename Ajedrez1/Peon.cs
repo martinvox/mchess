@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Ajedrez1
 {
@@ -14,21 +11,21 @@ namespace Ajedrez1
 
         public Peon()
         {
-            peones = new char[Tablero.DIMENSION, Tablero.DIMENSION];
-            PopPeon();//populate pawn array with X and Spaces
+            peones = new char[Tablero.tamano, Tablero.tamano];
+            PopPeon(); //llena los espacios de las primeras dos filas de cada lado con espacios (Espacio) y peones
         }
 
         private void PopPeon()
         {
-            for (int r = 0; r < Tablero.DIMENSION; r++)
+            for (int filas = 0; filas < Tablero.tamano; filas++)
             {
-                for (int c = 0; c < Tablero.DIMENSION; c++)
+                for (int columnas = 0; columnas < Tablero.tamano; columnas++)
                 {
-                    //place X into forst 2 and last 2 rows of the array
-                    if (r == 0 || r == 1 || r == Tablero.DIMENSION - 2 || r == Tablero.DIMENSION - 1)
-                        peones[r, c] = SimboloPeon;
+                    // ingresa SimboloPeon en las primeras 2 filas
+                    if (filas == 0 || filas == 1 || filas == Tablero.tamano - 2 || filas == Tablero.tamano - 1)
+                        peones[filas, columnas] = SimboloPeon;
                     else
-                        peones[r, c] = Espacio;
+                        peones[filas, columnas] = Espacio;
                 }
             }
         }

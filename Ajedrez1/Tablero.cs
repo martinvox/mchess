@@ -1,22 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Ajedrez1
 {
     public class Tablero
     {
         private string[,] tablero;
-        public const int DIMENSION = 8; //original 8x8 board
+        public const int tamano = 8;
 
         private Mover mover;
 
         public Tablero()
         {
             mover = new Mover();
-            tablero = new string[DIMENSION, DIMENSION];
+            tablero = new string[tamano, tamano];
             TableroHorizontal= "+---";
             TableroVertical = "| ";
         }
@@ -26,36 +23,36 @@ namespace Ajedrez1
 
         public void MostrarTablero()
         {
-            while (!mover.Exit)
+            while (!mover.Salir)
             {
                 Console.Clear();
-               // Console.WriteLine("X/Y");
-                Console.WriteLine("X/Y  0   1   2   3   4   5   6   7"); // x axis header
+                Console.WriteLine("Ajedrez libre\nNOTA: Ingresar un caracter invalido cerrará el programa\n");
+                Console.WriteLine("X en eje vertical // Y en eje horizontal\n");
+                Console.WriteLine("X/Y  0   1   2   3   4   5   6   7"); // escritura de numeros del eje Y
 
-                for (int r = 0; r < DIMENSION; r++)
+                for (int filas = 0; filas < tamano; filas++)
                 {
-                    Console.Write("  ");//left spacing - 2 spaces
-                    for (int c = 0; c < DIMENSION; c++)
+                    Console.Write("  ");//espaciado izquierdo
+                    for (int columnas = 0; columnas < tamano; columnas++)
                     {
-                        Console.Write(TableroHorizontal); //write the horizontal pattern
+                        Console.Write(TableroHorizontal); //patrón horizontal +===
                     }
 
                     Console.Write("+\n");
 
-                    for (int c = 0; c < DIMENSION; c++)
+                    for (int contador = 0; contador < tamano; contador++)
                     {
-                        if (c == 0)
-                            Console.Write(r + " "); //y axis header
+                        if (contador == 0)
+                            Console.Write(filas + " "); //escritura de numeros del eje Y
 
-                        Console.Write(TableroVertical + Peon.peones[r, c] + " "); //display the pawn neatly centered
+                        Console.Write(TableroVertical + Peon.peones[filas, contador] + " "); //mostrar los peones centrados con un espacio
                     }
 
                     Console.Write("|\n");
                 }
-
-                //the bottom line needs to be printed separately
-                Console.Write("  "); //left spacing
-                for (int c = 0; c < DIMENSION; c++)
+                //impresion de ultima linea
+                Console.Write("  "); //espaciado
+                for (int contador = 0; contador < tamano; contador++)
                 {
                     Console.Write(TableroHorizontal);
                 }
